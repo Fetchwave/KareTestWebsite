@@ -42,11 +42,11 @@ button{cursor:pointer}
 
 /* ---------- type ---------- */
 .d1,.d2,.d3,.d4{font-family:var(--display);font-stretch:72%;font-weight:800;letter-spacing:-.01em;line-height:.95;text-wrap:balance}
-.d1{font-size:clamp(44px,7.4vw,96px)}
-.d2{font-size:clamp(36px,5vw,64px)}
-.d3{font-size:clamp(28px,3.2vw,40px);line-height:1}
+.d1{font-size:clamp(42px,6vw,84px)}
+.d2{font-size:clamp(30px,3.6vw,48px)}
+.d3{font-size:clamp(26px,2.6vw,34px);line-height:1}
 .d4{font-size:clamp(22px,2.2vw,27px);line-height:1.05}
-.lede{font-size:clamp(18px,1.6vw,21px);line-height:1.5;color:var(--ink-2);max-width:60ch}
+.lede{font-size:clamp(17px,1.4vw,19px);line-height:1.55;color:var(--ink-2);max-width:56ch}
 .kicker{font-family:var(--display);font-stretch:100%;font-weight:700;font-size:14px;letter-spacing:.06em;color:var(--red);display:flex;align-items:center;gap:10px}
 .kicker::before{content:"";width:22px;height:3px;background:currentColor;border-radius:2px}
 .on-night .kicker,.hero .kicker,.phero .kicker{color:#E8A3A2}
@@ -63,7 +63,9 @@ button{cursor:pointer}
 .on-night .lede,.on-night .small{color:var(--on-night-2)}
 .sec-head{display:grid;gap:14px;margin-bottom:clamp(28px,4vw,48px);max-width:820px}
 .sec-head.split{max-width:none;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:end;gap:20px 48px}
-@media(max-width:860px){.sec-head.split{grid-template-columns:1fr}}
+@media(max-width:860px){.sec-head.split{grid-template-columns:1fr}.sec-head.split .btn-row{justify-content:flex-start!important}}
+.sec-foot{display:flex;justify-content:center;margin-top:28px}
+@media(max-width:560px){.sec-foot .btn{width:100%}}
 
 /* IBR sheet profile cut between bands */
 .ribs{height:26px;margin-top:-26px;position:relative;z-index:2;pointer-events:none;
@@ -85,10 +87,11 @@ button{cursor:pointer}
 .link:hover{color:var(--red-dk)}
 .on-night .link{color:#F0B2B1}
 .btn-row{display:flex;flex-wrap:wrap;gap:12px}
+@media(max-width:560px){.btn-row{flex-direction:column;align-items:stretch}.btn-row .btn{width:100%}}
 
 /* ---------- header ---------- */
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:61;background:var(--night)}
-.hdr{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:var(--night);color:#fff;border-bottom:1px solid var(--night-line)}
+.hdr{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:#0F0C0D;color:#fff;border-bottom:1px solid rgba(255,255,255,.1);box-shadow:0 10px 30px -18px rgba(0,0,0,.9)}
 .hdr-in{height:var(--hdr);display:flex;align-items:center;gap:20px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;flex:none}
 .brand img{width:46px;height:46px;border-radius:50%;background:#fff;padding:2px}
@@ -97,7 +100,10 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .brand small{font-size:11.5px;letter-spacing:.08em;color:var(--on-night-2);margin-top:4px}
 .nav{display:flex;align-items:center;gap:2px;margin-left:auto}
 .nav>a,.nav>div>button{background:none;border:0;color:rgba(255,255,255,.82);text-decoration:none;font-weight:600;font-size:15px;padding:10px 12px;border-radius:var(--r);display:inline-flex;align-items:center;gap:6px}
-.nav>a:hover,.nav>div>button:hover,.nav>a.on,.nav>div.on>button{color:#fff;background:rgba(255,255,255,.08)}
+.nav>a,.nav>div>button{position:relative}
+.nav>a:hover,.nav>div>button:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nav>a.on,.nav>div.on>button{color:#fff}
+.nav>a.on::after,.nav>div.on>button::after{content:"";position:absolute;left:12px;right:12px;bottom:-14px;height:3px;border-radius:3px 3px 0 0;background:var(--red)}
 .nav .caret{width:10px;height:10px;transition:transform .2s}
 .dd{position:relative}
 .dd-menu{position:absolute;top:calc(100% + 8px);left:-12px;width:360px;background:var(--paper);color:var(--ink);border-radius:var(--r-lg);box-shadow:0 24px 60px -18px rgba(0,0,0,.45);padding:10px;display:grid;gap:2px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .16s,transform .16s,visibility .16s}
@@ -137,22 +143,24 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 /* ---------- hero ---------- */
 .hero{position:relative;overflow:hidden;background:var(--night);color:#fff;isolation:isolate}
-.hero video,.hero .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
-.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(24,20,21,.94) 0%,rgba(24,20,21,.82) 42%,rgba(24,20,21,.35) 100%),linear-gradient(0deg,rgba(24,20,21,.9) 0%,rgba(24,20,21,0) 40%)}
-.hero-in{padding-block:clamp(40px,5vw,68px) clamp(44px,5vw,64px);display:grid;gap:20px;max-width:1240px}
-.hero h1{max-width:20ch;font-size:clamp(38px,5vw,66px)}
-.hero .lede{color:#D9D2D0;max-width:56ch}
-.role-pick{display:grid;gap:10px;margin-top:4px}
-.role-pick p{font-weight:600;font-size:15px;color:#fff}
-.role-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:980px}
-.role-row a{display:grid;grid-template-columns:44px minmax(0,1fr) 18px;align-items:center;gap:12px;min-height:66px;padding:10px 14px 10px 10px;border-radius:10px;background:rgba(24,20,21,.55);border:1px solid rgba(255,255,255,.22);text-decoration:none;font-weight:600;font-size:15px;line-height:1.25;backdrop-filter:blur(6px);transition:background .18s,border-color .18s}
-.role-row a:hover{background:var(--red);border-color:var(--red)}
-.role-row img{width:44px;height:44px;border-radius:6px;object-fit:cover}
-.role-row svg{width:18px;height:18px;opacity:.7}
-@media(max-width:900px){.role-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){.role-row a{grid-template-columns:36px minmax(0,1fr);font-size:14px;padding:8px 10px 8px 8px;min-height:58px}.role-row img{width:36px;height:36px}.role-row svg{display:none}}
-@media(max-width:330px){.role-row{grid-template-columns:1fr}}
-.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:var(--r-lg);background:var(--paper)}
+.hero-media{position:absolute;inset:0;z-index:-2}
+.hero-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(24,20,21,.94) 0%,rgba(24,20,21,.8) 45%,rgba(24,20,21,.3) 100%),linear-gradient(0deg,rgba(24,20,21,.85) 0%,rgba(24,20,21,0) 40%)}
+.hero-in{padding-block:clamp(56px,7vw,96px) clamp(60px,7vw,92px);display:grid;gap:22px;max-width:1240px}
+.hero h1{max-width:15ch}
+.hero .lede{color:#D9D2D0;max-width:44ch}
+.role-line{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-top:10px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14);max-width:760px;font-size:14.5px}
+.role-line span{color:var(--on-night-2)}
+.role-line a{color:#fff;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:1px}
+.role-line a:hover{border-color:#fff}
+@media(max-width:760px){
+  .hero-media{position:relative;inset:auto;aspect-ratio:1/1;z-index:0}
+  .hero-media::after{content:"";position:absolute;inset:auto 0 0;height:30%;background:linear-gradient(0deg,var(--night),rgba(24,20,21,0))}
+  .hero::after{display:none}
+  .hero-in{padding-block:4px 52px;gap:18px}
+  .role-line{gap:10px 16px}
+}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:var(--r-lg);background:var(--paper);margin-top:16px}
 .facts div{padding:20px 22px;display:grid;gap:4px;align-content:start}
 .facts div+div{border-left:1px solid var(--line)}
 .facts b{font-family:var(--display);font-stretch:72%;font-weight:800;font-size:clamp(28px,3vw,38px);line-height:1}
@@ -164,7 +172,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .phero .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
 .phero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(24,20,21,.95) 0%,rgba(24,20,21,.8) 50%,rgba(24,20,21,.45) 100%)}
 .phero-in{padding-block:clamp(48px,7vw,96px) clamp(60px,7vw,96px);display:grid;gap:22px}
-.phero h1{max-width:16ch}
+.phero h1{max-width:18ch;font-size:clamp(36px,4.6vw,60px)}
 .phero .lede{color:#D9D2D0}
 .crumb{font-size:14px;color:var(--on-night-2)}
 .crumb a{text-decoration:none;color:#fff}
@@ -174,7 +182,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .segs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 @media(max-width:1000px){.segs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.segs{grid-template-columns:1fr}}
-.seg{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:400px;border-radius:var(--r-lg);overflow:hidden;color:#fff;text-decoration:none;isolation:isolate;background:var(--night)}
+.seg{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:360px;border-radius:var(--r-lg);overflow:hidden;color:#fff;text-decoration:none;isolation:isolate;background:var(--night)}
 .seg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .5s ease}
 .seg::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(20,16,17,.95) 0%,rgba(20,16,17,.55) 48%,rgba(20,16,17,.1) 100%)}
 .seg:hover img{transform:scale(1.05)}
@@ -184,12 +192,13 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .seg .go{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;color:#fff;margin-top:4px}
 .seg .go svg{width:18px;height:18px;transition:transform .2s}
 .seg:hover .go svg{transform:translateX(4px)}
-@media(max-width:560px){.seg{min-height:300px}}
+@media(max-width:560px){.seg{min-height:230px}.seg h3{font-size:26px;min-height:0}.seg p{min-height:0}}
+@media(max-width:640px){.cats .cat .im{aspect-ratio:4/3}.cat .tx{padding:10px 12px;min-height:54px}.cat b{font-size:14.5px}}
 
 /* ---------- roof anatomy ---------- */
 .anat{display:grid;gap:16px}
-.anat-fig{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
-.anat-fig>svg{width:100%;min-width:860px;height:auto;display:block}
+.anat-fig{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.anat-fig>svg{width:100%;height:auto;display:block}
 .anat-hint{display:none;font-size:13px;color:var(--muted)}
 @media(max-width:900px){.anat-hint{display:block}}
 .anat-panel{display:grid;grid-template-columns:300px minmax(0,1fr);gap:16px;align-items:stretch}
@@ -206,7 +215,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 @media(prefers-reduced-motion:reduce){.pin circle.halo{animation:none}}
 .anat-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
 @media(max-width:900px){.anat-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.anat-chip{display:grid;grid-template-columns:30px minmax(0,1fr);align-items:center;gap:12px;min-height:56px;padding:8px 14px 8px 10px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);font-weight:600;font-size:15px;line-height:1.25;text-align:left;transition:all .16s}
+.anat-chip{display:grid;grid-template-columns:30px minmax(0,1fr);align-items:center;gap:12px;min-height:56px;padding:8px 14px 8px 10px;border-radius:var(--r-lg);border:1px solid var(--line);background:var(--paper);font-weight:600;font-size:15px;line-height:1.25;text-align:left;transition:all .16s}
 .anat-chip .n,.ac-top .n{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:14px}
 .anat-chip .n{background:var(--zinc-2);color:var(--ink)}
 .anat-chip:hover{border-color:var(--ink)}
@@ -225,7 +234,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .ac-prod{display:flex;flex-direction:column;gap:10px;min-width:0;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper)}
 .ac-prod b{font-size:15px;line-height:1.3}
 .ac-prod .ft{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin-top:auto;padding-top:4px}
-@media(max-width:720px){.mbox.hs-box{padding:18px}.ac-top b{font-size:22px}.ac-prods{grid-template-columns:1fr}.ac-prod{display:grid;grid-template-columns:92px minmax(0,1fr);column-gap:12px;align-items:center}.ac-prod .im{grid-row:span 3}.ac-prod .ft{grid-column:2;margin:0}}
+@media(max-width:720px){.mbox.hs-box{padding:18px;gap:14px}.ac-top b{font-size:22px}.hs-desc{font-size:15px}.ac-prods{grid-template-columns:1fr;gap:10px}.ac-prod{display:grid;grid-template-columns:84px minmax(0,1fr);gap:8px 12px;align-items:center;padding:10px}.ac-prod .im{grid-row:span 3}.ac-prod .cls-pills{display:none}.ac-prod .ft{grid-column:2;margin:0;padding:0;grid-template-columns:64px minmax(0,1fr)}.ac-prod .ft .btn{padding:6px 8px;min-height:38px;font-size:13.5px;gap:6px}.ac-prod .ft .btn svg{width:15px;height:15px}}
 /* product image boxes: the image is pinned inside the box so it can never spill over the card */
 .imbox,.pc .ph,.cat .im,.ac-prod .im,.pd-img{position:relative;display:block;overflow:hidden;background:#EDEDED;border-radius:8px;aspect-ratio:1/1}
 .imbox img,.pc .ph img,.cat .im img,.ac-prod .im img,.pd-img img{position:absolute;inset:6%;width:88%;height:88%;object-fit:contain;mix-blend-mode:multiply}
@@ -245,6 +254,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 @media(max-width:420px){.stops{grid-template-columns:1fr}}
 .cls .st{text-align:right;font-size:13px;font-weight:700;color:var(--on-night-2);min-width:120px}
 .cls.best .st{color:#fff}
+@media(max-width:560px){.cls{grid-template-columns:52px minmax(0,1fr);padding:12px 14px}.cls .z{width:52px;height:52px;font-size:19px}.cls .st{grid-column:2;text-align:left;min-width:0}}
 .tog{display:flex;align-items:center;gap:12px;font-size:15px;color:#fff;cursor:pointer}
 .tog input{appearance:none;width:44px;height:26px;border-radius:13px;background:#4A4344;position:relative;flex:none;cursor:pointer;transition:background .18s}
 .tog input::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .18s}
@@ -277,7 +287,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .projects figcaption{position:absolute;left:0;right:0;bottom:0;padding:48px 20px 18px;background:linear-gradient(0deg,rgba(20,16,17,.9),transparent);color:#fff;display:grid;gap:2px}
 .projects figcaption b{font-family:var(--display);font-stretch:75%;font-weight:800;font-size:26px;line-height:1}
 .projects figcaption span{font-size:14px;color:#D9D2D0}
-@media(max-width:760px){.projects{grid-template-columns:1fr}.projects figure:first-child{grid-row:auto;min-height:320px}}
+@media(max-width:760px){.projects{grid-template-columns:1fr}.projects figure{min-height:200px}.projects figure:first-child{grid-row:auto;min-height:260px}}
 
 /* ---------- categories ---------- */
 .cats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
@@ -286,7 +296,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .cat{display:grid;grid-template-rows:auto 1fr;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--paper);text-decoration:none;overflow:hidden;transition:border-color .18s,transform .18s,box-shadow .18s}
 .cat:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 18px 40px -26px rgba(0,0,0,.4)}
 .cat .im{border-bottom:1px solid var(--line)}
-.cat .tx{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.cat .tx{padding:14px 16px;display:flex;align-items:center;min-height:60px}
 .cat b{display:block;font-size:16px;line-height:1.25}
 .cat .ct{flex:none;font-size:13px;font-weight:700;color:var(--muted);background:var(--zinc);border-radius:999px;padding:3px 10px}
 .cats-total{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:18px;font-size:14.5px;color:var(--muted)}
@@ -332,13 +342,13 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .on-night .err{color:#F0B2B1}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{border:1.5px solid var(--line);background:var(--paper);border-radius:999px;padding:9px 16px;font-weight:600;font-size:15px;transition:all .16s}
+.chip{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:9px 16px;font-weight:600;font-size:15px;transition:all .16s}
 .chip:hover{border-color:var(--ink)}
 .chip.on,.chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
 .on-night .chip{background:transparent;border-color:var(--night-line);color:#fff}
 .on-night .chip.on,.on-night .chip[aria-pressed=true]{background:#fff;color:var(--ink);border-color:#fff}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
-.tile{display:grid;gap:4px;text-align:left;padding:16px;border:1.5px solid var(--line);border-radius:var(--r-lg);background:var(--paper);transition:all .16s}
+.tile{display:grid;gap:4px;text-align:left;padding:16px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--paper);transition:all .16s}
 .tile:hover{border-color:var(--ink)}
 .tile b{font-size:16px}
 .tile span{font-size:13.5px;color:var(--muted);line-height:1.35}
@@ -357,6 +367,11 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .cta-band li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:12px;color:var(--on-night-2)}
 .cta-band li svg{width:22px;height:22px;color:#E8A3A2;margin-top:2px}
 .cta-band li b{color:#fff}
+.mini-steps{counter-reset:ms;display:grid;gap:14px;padding:0;margin:0;list-style:none}
+.mini-steps li{counter-increment:ms;display:grid;grid-template-columns:36px minmax(0,1fr);gap:2px 14px;align-items:start}
+.mini-steps li::before{content:counter(ms);grid-row:span 2;width:36px;height:36px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:16px}
+.mini-steps b{color:#fff;font-size:17px}
+.mini-steps span{color:var(--on-night-2);font-size:15px}
 
 /* ---------- quote stepper ---------- */
 .qwrap{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,4vw,48px);align-items:start}
@@ -427,7 +442,7 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .pd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
 @media(max-width:860px){.pd{grid-template-columns:1fr}}
 .pd-img{border:1px solid var(--line);border-radius:var(--r-lg)!important;position:sticky!important;top:calc(var(--hdr) + 20px)}
-@media(max-width:860px){.pd-img{position:relative!important}}
+@media(max-width:860px){.pd-img{position:relative!important;top:auto!important}}
 .pd-info{display:grid;gap:20px}
 .pd-info h1{font-family:var(--display);font-stretch:75%;font-weight:800;font-size:clamp(32px,3.6vw,46px);line-height:1}
 .pd-info .lede{font-size:17.5px}
@@ -490,7 +505,7 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .g4{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media(max-width:1180px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.g3{grid-template-columns:1fr}.g2{grid-template-columns:1fr}}
-.ct{position:relative;display:grid;grid-template-rows:auto auto 1fr;align-content:start;gap:4px;padding:22px 22px 20px;border:1.5px solid var(--line);border-radius:14px;background:var(--paper);min-height:100%}
+.ct{position:relative;display:grid;grid-template-rows:auto auto 1fr;align-content:start;gap:4px;padding:22px 22px 20px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--paper);min-height:100%}
 .ct:hover{border-color:#B9BEBE}
 .ct .rd{position:absolute;top:16px;right:16px;width:24px;height:24px;border-radius:50%;border:2px solid var(--line);background:var(--paper);transition:all .16s}
 .ct .ic{height:52px;display:flex;align-items:center;margin-bottom:14px;padding-right:28px}
@@ -500,7 +515,7 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .ct.on{border-color:var(--red);background:#FCF6F5;box-shadow:0 0 0 1px var(--red)}
 .ct.on .rd{border-color:var(--red);background:radial-gradient(circle,var(--red) 0 6px,var(--paper) 7px)}
 @media(max-width:620px){.g2 .ct,.g3 .ct{grid-template-columns:72px minmax(0,1fr);grid-template-rows:auto auto;column-gap:14px;padding:16px 44px 16px 16px;align-items:center}.g2 .ct .ic,.g3 .ct .ic{grid-row:span 2;margin:0;padding:0;height:40px}.g4{gap:10px}.g4 .ct{padding:16px 14px}.g4 .ct .ic{height:40px;margin-bottom:10px}.g4 .ct .ic svg{height:36px}.g4 .ct b{font-size:16.5px}.g4 .ct>span:last-child{font-size:14px}.ct .rd{top:12px;right:12px;width:22px;height:22px}}
-.cbox{border:1.5px solid var(--line);border-radius:14px;padding:22px;background:var(--paper)}
+.cbox{border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;background:var(--paper)}
 .seg-ctl{display:inline-flex;background:var(--zinc);border-radius:999px;padding:5px;gap:2px}
 .seg-ctl button{border:0;background:transparent;border-radius:999px;padding:11px 26px;font-weight:600;font-size:15.5px;color:var(--muted)}
 .seg-ctl button.on{background:var(--paper);color:var(--ink);box-shadow:0 2px 8px -2px rgba(0,0,0,.18)}
@@ -532,7 +547,7 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .crow.c5 .z{background:var(--red);color:#fff}
 .crow b{font-size:16px;display:block}
 .crow span{font-size:14px;color:var(--muted)}
-@media(max-width:760px){.crow{grid-template-columns:56px minmax(0,1fr)}.crow>div:nth-child(n+3){grid-column:2}}
+@media(max-width:760px){.crow{grid-template-columns:48px minmax(0,1fr);gap:4px 14px;align-items:start}.crow .z{width:48px;height:48px;font-size:17px;grid-row:span 3}.crow>div:nth-child(n+3){grid-column:2}}
 .wtable{width:100%;border-collapse:collapse;font-size:15px;min-width:640px}
 .wtable th,.wtable td{padding:14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 .wtable th{font-size:13px;letter-spacing:.04em;color:var(--muted);font-weight:700}
@@ -555,7 +570,7 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 /* ---------- segment page bits ---------- */
 .pains{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 @media(max-width:900px){.pains{grid-template-columns:1fr}}
-.pain{border-top:3px solid var(--red);padding-top:18px;display:grid;gap:10px;align-content:start}
+.pain{border-top:2px solid var(--ink);padding-top:18px;display:grid;gap:10px;align-content:start}
 .pain .q{font-family:var(--display);font-stretch:80%;font-weight:800;font-size:23px;line-height:1.1}
 .pain p{color:var(--muted)}
 .pain .fix{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;color:var(--ink);font-weight:500}
@@ -574,7 +589,7 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 @media(max-width:700px){.tool-cta{grid-template-columns:1fr}}
 
 /* ---------- footer ---------- */
-.ftr{background:var(--night);color:var(--on-night-2);padding-block:56px calc(32px + env(safe-area-inset-bottom,0px));font-size:15px}
+.ftr{border-top:1px solid var(--night-line);background:var(--night);color:var(--on-night-2);padding-block:56px calc(32px + env(safe-area-inset-bottom,0px));font-size:15px}
 .ftr-grid{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:32px}
 @media(max-width:900px){.ftr-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.ftr-grid{grid-template-columns:1fr}}
@@ -679,62 +694,58 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 
 <!-- =============================== HOME =============================== -->
 <section class="page" data-page="home" data-title="Kare Industrial Suppliers | Roofing fasteners for the trade">
+  <!-- 1. Introduction -->
   <div class="hero">
-    <video autoplay muted loop playsinline preload="metadata" poster="https://kareindustrial.co.za/cdn/shop/collections/H17A7376_2.jpg?width=1600" aria-hidden="true">
-      <source src="https://kareindustrial.co.za/cdn/shop/videos/c/vp/7af7c99a48ad41fa99efb41545a34c28/7af7c99a48ad41fa99efb41545a34c28.HD-720p-1.6Mbps-66946278.mp4" type="video/mp4">
-    </video>
+    <div class="hero-media">
+      <video autoplay muted loop playsinline preload="metadata" poster="https://kareindustrial.co.za/cdn/shop/collections/H17A7376_2.jpg?width=1600" aria-hidden="true">
+        <source src="https://kareindustrial.co.za/cdn/shop/videos/c/vp/7af7c99a48ad41fa99efb41545a34c28/7af7c99a48ad41fa99efb41545a34c28.HD-720p-1.6Mbps-66946278.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="wrap hero-in">
-      <p class="kicker">Roofing fastener specialists</p>
       <h1 class="d1">The screws that keep South Africa's roofs on.</h1>
-      <p class="lede">ZAP self-drilling screws, Dektite flashings and roofing hardware for contractors, builders and stockists. Matched to your roof and your coastline, at trade prices.</p>
+      <p class="lede">ZAP roofing screws, washers and Dektite flashings, matched to your roof and your coastline.</p>
       <div class="btn-row">
         <a class="btn btn-red" href="#quote">Get a trade quote <svg><use href="#i-arrow"/></svg></a>
         <a class="btn btn-line light" href="#calculator"><svg><use href="#i-calc"/></svg>Work out my screws</a>
       </div>
-      <div class="role-pick">
-        <p>Tell us who you are and we'll show you what matters to you:</p>
-        <div class="role-row">
-          <a href="#contractors"><img src="https://kareindustrial.co.za/cdn/shop/collections/H17A7376_2.jpg?width=120" alt=""><span>Roofing contractor</span><svg><use href="#i-arrow"/></svg></a>
-          <a href="#builders"><img src="https://kareindustrial.co.za/cdn/shop/files/DJI_0213-2.jpg?width=120" alt=""><span>Builder or developer</span><svg><use href="#i-arrow"/></svg></a>
-          <a href="#distributors"><img src="https://kareindustrial.co.za/cdn/shop/collections/DSCF8688.jpg?width=120" alt=""><span>Distributor or hardware store</span><svg><use href="#i-arrow"/></svg></a>
-          <a href="#industrial"><img src="https://kareindustrial.co.za/cdn/shop/articles/DJI_0149.jpg?width=120" alt=""><span>Industrial &amp; steel</span><svg><use href="#i-arrow"/></svg></a>
-        </div>
-      </div>
+      <nav class="role-line" aria-label="Who we supply">
+        <span>I'm a</span>
+        <a href="#contractors">Roofing contractor</a>
+        <a href="#builders">Builder or developer</a>
+        <a href="#distributors">Distributor or stockist</a>
+        <a href="#industrial">Industrial contractor</a>
+      </nav>
     </div>
   </div>
   <div class="ribs to-paper"></div>
 
-  <section class="band tight" style="padding-bottom:0">
-    <div class="wrap">
-      <div class="facts">
-        <div><b class="num">20+</b><span>years on South African roofs</span></div>
-        <div><b class="num">3</b><span>branches: Durban, Cape Town and Gqeberha</span></div>
-        <div><b>Class 4 &amp; 5</b><span>heavy-duty galvanised and 304 stainless</span></div>
-        <div><b>Written</b><span>warranty on ZAP Z3, Z4 and Z5 screws</span></div>
-      </div>
-    </div>
-  </section>
-
+  <!-- 2. Customer types -->
   <section class="band">
     <div class="wrap">
-      <div class="sec-head split">
-        <div style="display:grid;gap:14px"><p class="kicker">Who we supply</p><h2 class="d2">Built around how you buy.</h2></div>
-        <p class="lede">A roofer needs the right screw on site tomorrow. A developer needs one spec across 200 units. A hardware store needs stock that sells. Pick your trade.</p>
-      </div>
+      <div class="sec-head"><p class="kicker">Who we supply</p><h2 class="d2">Built around how you buy.</h2><p class="lede">Pick your trade to see the products, tools and pricing that matter to you.</p></div>
       <div class="segs">
         <a class="seg" href="#contractors"><img src="https://kareindustrial.co.za/cdn/shop/collections/H17A7376_2.jpg?width=800" alt="" loading="lazy"><div class="seg-in"><h3>Roofing contractors</h3><p>The right screw and class for every roof, ready for the job.</p><span class="go">See how we help <svg><use href="#i-arrow"/></svg></span></div></a>
         <a class="seg" href="#builders"><img src="https://kareindustrial.co.za/cdn/shop/files/DJI_0213-2.jpg?width=800" alt="" loading="lazy"><div class="seg-in"><h3>Builders &amp; developers</h3><p>One fixing spec for every unit, with a written warranty behind it.</p><span class="go">See how we help <svg><use href="#i-arrow"/></svg></span></div></a>
-        <a class="seg" href="#distributors"><img src="https://kareindustrial.co.za/cdn/shop/collections/DSCF8688.jpg?width=800" alt="" loading="lazy"><div class="seg-in"><h3>Distributors &amp; hardware stores</h3><p>Stock the ZAP screws roofers ask for by name.</p><span class="go">Become a stockist <svg><use href="#i-arrow"/></svg></span></div></a>
-        <a class="seg" href="#industrial"><img src="https://kareindustrial.co.za/cdn/shop/articles/DJI_0149.jpg?width=800" alt="" loading="lazy"><div class="seg-in"><h3>Industrial &amp; steel structures</h3><p>Warehouse roofs, hot-rolled purlins, steel decking and solar.</p><span class="go">See how we help <svg><use href="#i-arrow"/></svg></span></div></a>
+        <a class="seg" href="#distributors"><img src="https://kareindustrial.co.za/cdn/shop/collections/DSCF8688.jpg?width=800" alt="" loading="lazy"><div class="seg-in"><h3>Distributors &amp; stockists</h3><p>Stock the ZAP screws roofers ask for by name.</p><span class="go">Become a stockist <svg><use href="#i-arrow"/></svg></span></div></a>
+        <a class="seg" href="#industrial"><img src="https://kareindustrial.co.za/cdn/shop/articles/DJI_0149.jpg?width=800" alt="" loading="lazy"><div class="seg-in"><h3>Industrial &amp; steel</h3><p>Warehouse roofs, hot-rolled purlins, steel decking and solar.</p><span class="go">See how we help <svg><use href="#i-arrow"/></svg></span></div></a>
       </div>
     </div>
   </section>
 
+  <!-- 3. Product range -->
   <section class="band zinc">
     <div class="wrap">
-      <div class="sec-head"><p class="kicker">What goes into a warehouse</p><h2 class="d2">Every fixing on the building, in one place.</h2><p class="lede">Tap a number on the warehouse to see the Kare products that go there, then add them straight to your quote.</p></div>
+      <div class="sec-head"><p class="kicker">The range</p><h2 class="d2">Everything from the purlin up.</h2></div>
+      <div class="cats" id="homeCats"></div>
+      <div class="sec-foot"><a class="btn btn-ink" href="#products" id="homeCatsBtn">Browse all products <svg><use href="#i-arrow"/></svg></a></div>
+    </div>
+  </section>
+
+  <!-- 4. Technical guidance -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head"><p class="kicker">Technical guide</p><h2 class="d2">Every fixing on the building.</h2><p class="lede">Tap a number on the warehouse to see the Kare products that go there.</p></div>
       <div class="anat">
-        <p class="anat-hint">Swipe sideways to see the whole building.</p>
         <div class="anat-fig" id="anatFig"></div>
         <div class="anat-list" id="anatList" role="group" aria-label="Building fixings"></div>
       </div>
@@ -748,7 +759,7 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
         <div style="display:grid;gap:18px;align-content:start">
           <p class="kicker">Corrosion class finder</p>
           <h2 class="d2">How close is the sea?</h2>
-          <p class="lede">Salt in the air sets the screw class. Pick how far the site is from the coast and see which ZAP class Kare recommends.</p>
+          <p class="lede">Pick how far the site is from the coast to see which ZAP class Kare recommends.</p>
           <div class="coast" data-finder>
             <div class="coast-scene"><canvas aria-hidden="true"></canvas></div>
             <div class="stops" role="radiogroup" aria-label="Distance from the coast"></div>
@@ -759,69 +770,46 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
           <div class="iso"><span class="tag" data-iso></span><p data-iso-desc></p></div>
           <div class="classes" data-classes></div>
           <p class="finder-note">A higher class always works where a lower one is recommended. Kare confirms the right class for your site when we quote.</p>
-          <div class="btn-row"><a class="btn btn-red" href="#quote">Quote me the right class</a><a class="btn btn-line" href="#class-guide">Full class guide</a></div>
+          <div class="btn-row"><a class="btn btn-red" href="#quote">Get a trade quote <svg><use href="#i-arrow"/></svg></a><a class="btn btn-line" href="#class-guide">Full class guide</a></div>
         </div>
       </div>
     </div>
   </section>
   <div class="ribs to-paper"></div>
 
+  <!-- 5. Proof of experience -->
   <section class="band">
     <div class="wrap">
-      <div class="sec-head split">
-        <div style="display:grid;gap:14px"><p class="kicker">Recent projects</p><h2 class="d2">On roofs you've driven past.</h2></div>
-        <p class="lede">Distribution centres, factories and warehouses across the country, fixed with Kare fasteners.</p>
-      </div>
+      <div class="sec-head"><p class="kicker">Recent projects</p><h2 class="d2">On roofs you've driven past.</h2></div>
       <div class="projects">
         <figure><img src="https://kareindustrial.co.za/cdn/shop/articles/DJI_0149.jpg?width=1400" alt="Aerial view of the Takealot Durban warehouse roof" loading="lazy"><figcaption><b>Takealot Durban</b><span>Distribution centre</span></figcaption></figure>
         <figure><img src="https://kareindustrial.co.za/cdn/shop/articles/DJI_0216-2.jpg?width=900" alt="Aerial view of the Unilever Durban building" loading="lazy"><figcaption><b>Unilever Durban</b><span>Industrial</span></figcaption></figure>
         <figure><img src="https://kareindustrial.co.za/cdn/shop/articles/DJI_0143-2_e23b3f04-bff4-4b09-a9c0-b4f568c19973.jpg?width=900" alt="Aerial view of the Timefreight warehouse" loading="lazy"><figcaption><b>Timefreight</b><span>Warehousing</span></figcaption></figure>
       </div>
-    </div>
-  </section>
-
-  <section class="band zinc tight">
-    <div class="wrap">
-      <div class="sec-head split">
-        <div style="display:grid;gap:14px"><p class="kicker">The range</p><h2 class="d2">Everything from the purlin up.</h2></div>
-        <div class="btn-row" style="justify-content:flex-end"><a class="btn btn-ink" href="#products">Browse all products <svg><use href="#i-arrow"/></svg></a></div>
+      <div class="facts">
+        <div><b class="num">20+</b><span>years on South African roofs</span></div>
+        <div><b class="num">3</b><span>branches: Durban, Cape Town and Gqeberha</span></div>
+        <div><b>Class 4 &amp; 5</b><span>heavy-duty galvanised and 304 stainless</span></div>
+        <div><b>Written</b><span>warranty on ZAP Z3, Z4 and Z5 screws</span></div>
       </div>
-      <div class="cats" id="homeCats"></div>
-      <p class="cats-total" id="homeCatsTotal"></p>
     </div>
   </section>
 
-  <section class="band">
-    <div class="wrap">
-      <div class="sec-head"><p class="kicker">How quoting works</p><h2 class="d2">From enquiry to site in three steps.</h2></div>
-      <ol class="steps" role="list">
-        <li><b>Tell us about the job</b><p>Use the quote form, the screw calculator, or send your materials list. Roof type, sheeting and how far you are from the sea is all we need to start.</p></li>
-        <li><b>We match the fixings</b><p>Our team checks screw length, drill point and corrosion class against your sheeting, purlins and environment, so nothing gets swapped on site.</p></li>
-        <li><b>Your trade quote</b><p>Trade pricing on your quantities, from your nearest branch in Durban, Cape Town or Gqeberha.</p></li>
-      </ol>
-    </div>
-  </section>
-
+  <!-- 6 + 7. Quoting process and final quote action -->
   <div class="ribs to-night"></div>
   <section class="band night on-night">
     <div class="wrap cta-band">
-      <div style="display:grid;gap:18px">
+      <div style="display:grid;gap:20px;align-content:start">
         <p class="kicker">Get a trade quote</p>
-        <h2 class="d2">Send us the job. We'll send the right fixings and a price.</h2>
-        <ul>
-          <li><svg><use href="#i-check"/></svg><span><b>Trade pricing</b> on your quantities.</span></li>
-          <li><svg><use href="#i-check"/></svg><span><b>Checked by a fastener specialist</b> before it's quoted.</span></li>
-          <li><svg><use href="#i-check"/></svg><span><b>Backed by Kare's written warranty</b> on ZAP Z3, Z4 and Z5 screws.</span></li>
-        </ul>
+        <h2 class="d2">Send us the job. We'll send the fixings and a price.</h2>
+        <ol class="mini-steps" role="list">
+          <li><b>Tell us about the job</b><span>Roof type, sheeting and distance from the sea is all we need.</span></li>
+          <li><b>We match the fixings</b><span>A fastener specialist checks length, drill point and class.</span></li>
+          <li><b>You get a trade quote</b><span>Priced on your quantities, from your nearest branch.</span></li>
+        </ol>
+        <p class="small">Rather call? Durban <span class="num">031 705 5610</span> · Cape Town <span class="num">021 592 4577</span> · Gqeberha <span class="num">041 364 1294</span></p>
       </div>
       <div class="qq" data-quick-form data-source="homepage" data-form-name="Homepage quick quote"><h3>Quick quote</h3></div>
-    </div>
-  </section>
-  <div class="ribs to-zinc"></div>
-  <section class="band zinc tight">
-    <div class="wrap">
-      <div class="sec-head" style="margin-bottom:24px"><p class="kicker">Branches</p><h2 class="d3">Talk to your nearest branch.</h2></div>
-      <div class="branches" data-branches></div>
     </div>
   </section>
 </section>
@@ -1077,7 +1065,7 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 <aside class="qdrawer" id="qdrawer" aria-label="Your quote list" aria-hidden="true">
   <div class="qd-h"><h3>Your quote list</h3><button class="xbtn" type="button" data-qclose aria-label="Close"><svg><use href="#i-x"/></svg></button></div>
   <div class="qd-b" data-qlist></div>
-  <div class="qd-f"><a class="btn btn-red btn-block" href="#quote/products" data-qclose>Request a quote for these</a><a class="btn btn-line btn-block btn-sm" href="#products" data-qclose>Keep browsing</a></div>
+  <div class="qd-f"><a class="btn btn-red btn-block" href="#quote/products" data-qclose>Get a trade quote</a><a class="btn btn-line btn-block btn-sm" href="#products" data-qclose>Keep browsing</a></div>
 </aside>
 
 <script>
@@ -1188,7 +1176,7 @@ function plink(p) { return '#product/' + p.h; }
 function groupName(p) { return (GBY[p.g] || {n:'Hardware'}).n; }
 function pills(p) { return p.classes.length ? '<div class="cls-pills">' + p.classes.map(function (c) { return '<span class="pill' + (c === 5 ? ' c5' : '') + '">Class ' + c + (c === 5 ? ' stainless' : '') + '</span>'; }).join('') + '</div>' : ''; }
 function pcard(p) {
-  return '<article class="pc"><a class="ph" href="' + plink(p) + '" aria-label="' + esc(p.t) + '"><img src="' + pimg(p, 600) + '" alt="" loading="lazy"></a><div class="bd"><span class="ty">' + groupName(p) + '</span><h3><a href="' + plink(p) + '">' + esc(p.t) + '</a></h3>' + pills(p) +
+  return '<article class="pc"><a class="ph" href="' + plink(p) + '" aria-label="' + esc(p.t) + '"><img src="' + pimg(p, 600) + '" alt="" loading="lazy"></a><div class="bd"><h3><a href="' + plink(p) + '">' + esc(p.t) + '</a></h3>' + pills(p) +
     '<div class="ft"><button type="button" class="btn btn-ink btn-sm" data-add="' + p.h + '">' + icon('plus') + 'Add to quote</button><a href="' + plink(p) + '">Details</a></div></div></article>';
 }
 
@@ -1305,7 +1293,7 @@ function mountQuickForm(box) {
     contactFields(id, '<div class="f"><label for="' + id + 't">Town / city</label><input class="inp" id="' + id + 't" autocomplete="address-level2" data-req></div>') +
     '<div class="f"><label for="' + id + 'm">What do you need?</label><textarea class="inp" id="' + id + 'm" placeholder="e.g. 2 000 × 12 × 65mm for an IBR roof on steel purlins in Umhlanga" data-req></textarea></div>' +
     '<input class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" name="website">' +
-    '<p class="err" hidden></p><button class="btn btn-red btn-block" type="submit">Send my quote request</button>' +
+    '<p class="err" hidden></p><button class="btn btn-red btn-block" type="submit">Send quote request</button>' +
     '<p class="small">We only use your details to quote you.</p></form>';
   var form = box.querySelector('form');
   form.addEventListener('submit', function (e) {
@@ -1316,7 +1304,7 @@ function mountQuickForm(box) {
     if (role) fields.unshift({label:'I am a', value:role});
     var btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.textContent = 'Sending…';
     sendLead({source:src, form_name:name, fields:fields.filter(function (f) { return f.value; }), products:[], hp:form.website.value}).then(function (res) {
-      if (!res.ok) { btn.disabled = false; btn.textContent = 'Send my quote request'; err.hidden = false; err.textContent = failHtml(); return; }
+      if (!res.ok) { btn.disabled = false; btn.textContent = 'Send quote request'; err.hidden = false; err.textContent = failHtml(); return; }
       box.innerHTML = doneHtml(res, v('n'));
     });
   });
@@ -1367,7 +1355,7 @@ function renderQuote() {
     contactFields('jb-', '<div class="f"><label for="jb-t">Town / city of the site</label><input class="inp" id="jb-t" autocomplete="address-level2" data-req></div>') +
     '<div class="f"><label for="jb-m">What do you need?</label><textarea class="inp" id="jb-m" rows="5" placeholder="e.g. Chromadek IBR onto timber trusses, 380 m², plus ridge capping and 4 Dektites for vent pipes" data-req>' + esc(JOB.need) + '</textarea></div>' +
     '<input class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" name="website">' +
-    '<p class="err" hidden></p><button class="btn btn-red btn-block" type="submit">Send my quote request ' + icon('arrow') + '</button>' +
+    '<p class="err" hidden></p><button class="btn btn-red btn-block" type="submit">Send quote request ' + icon('arrow') + '</button>' +
     '<p class="small">Only want prices on specific products? Use <a class="link" href="#quote/products">Quote for products</a> instead. You don\'t need to send both.</p></form>';
   var form = $('form', box);
   form.addEventListener('submit', function (e) {
@@ -1377,7 +1365,7 @@ function renderQuote() {
     var fields = [{label:'I am a', value:v('r')}, {label:'Full name', value:v('n')}, {label:'Phone', value:v('p')}, {label:'Email', value:v('e')}, {label:'Town / city', value:v('t')}, {label:'What do you need', value:v('m')}].filter(function (f) { return f.value; });
     var btn = $('button[type=submit]', form); btn.disabled = true; btn.textContent = 'Sending…';
     sendLead({source: JOB.fromCalc ? 'calculator' : 'quote_page', form_name: JOB.fromCalc ? 'Roof screw calculator quote' : 'Website job quote', fields:fields, products:[], hp:form.website.value}).then(function (res) {
-      if (!res.ok) { btn.disabled = false; btn.innerHTML = 'Send my quote request ' + icon('arrow'); err.hidden = false; err.textContent = failHtml(); return; }
+      if (!res.ok) { btn.disabled = false; btn.innerHTML = 'Send quote request ' + icon('arrow'); err.hidden = false; err.textContent = failHtml(); return; }
       box.innerHTML = doneHtml(res, v('n')); JOB = {need:'', fromCalc:false};
     });
   });
@@ -1391,7 +1379,7 @@ function renderProductForm(box) {
     '<div class="f"><label for="pf-c">Company <span class="opt">(optional)</span></label><input class="inp" id="pf-c" autocomplete="organization"></div>' +
     '<div class="f"><label for="pf-x">Notes <span class="opt">(optional)</span></label><textarea class="inp" id="pf-x" rows="3" placeholder="Delivery town, colours, anything else we should know">' + esc(NOTES.text) + '</textarea></div>' +
     '<input class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" name="website">' +
-    '<p class="err" hidden></p><button class="btn btn-red btn-block" type="submit">Send my product quote ' + icon('arrow') + '</button>' +
+    '<p class="err" hidden></p><button class="btn btn-red btn-block" type="submit">Send quote request ' + icon('arrow') + '</button>' +
     '<p class="small">Not sure what you need? Use <a class="link" href="#quote">Quote for a job</a> and describe the roof instead. You don\'t need to send both.</p></form>';
   qRender();
   var form = $('form', box), q = $('#pk-q'), res = $('#pk-res');
@@ -1413,7 +1401,7 @@ function renderProductForm(box) {
     var fields = [{label:'Full name', value:v('n')}, {label:'Phone', value:v('p')}, {label:'Email', value:v('e')}, {label:'Company', value:v('c')}, {label:'Nearest branch', value:v('b')}, {label:'Products', value:lines}, {label:'Notes', value:v('x')}].filter(function (f) { return f.value; });
     var btn = $('button[type=submit]', form); btn.disabled = true; btn.textContent = 'Sending…';
     sendLead({source: NOTES.fromCalc ? 'calculator' : 'quote_page', form_name: NOTES.fromCalc ? 'Roof screw calculator product quote' : 'Website product quote', fields:fields, products:qProducts(), hp:form.website.value}).then(function (r) {
-      if (!r.ok) { btn.disabled = false; btn.innerHTML = 'Send my product quote ' + icon('arrow'); err.hidden = false; err.textContent = failHtml(); return; }
+      if (!r.ok) { btn.disabled = false; btn.innerHTML = 'Send quote request ' + icon('arrow'); err.hidden = false; err.textContent = failHtml(); return; }
       box.innerHTML = doneHtml(r, v('n')); Q = []; qSave(); NOTES = {text:'', fromCalc:false};
     });
   });
@@ -1534,10 +1522,12 @@ function buildAnatomy() {
     s.push(ln(R(a0 + 22, b0, 5), R(a0 + 22, b1, 5), 'rgba(159,179,204,.55)', 1));
   }
   // pins
+  var small = window.innerWidth < 760, pr = small ? 48 : 19, fs = small ? 44 : 18;
   ANAT.forEach(function (p, k) {
     var c = p.at();
-    s.push('<g class="pin" tabindex="0" role="button" aria-label="' + esc(p.t) + '" data-k="' + k + '"><circle class="halo" cx="' + f1(c[0]) + '" cy="' + f1(c[1]) + '" r="24"/><circle class="dot" cx="' + f1(c[0]) + '" cy="' + f1(c[1]) + '" r="19"/><text x="' + f1(c[0]) + '" y="' + f1(c[1] + 1) + '">' + (k + 1) + '</text></g>');
+    s.push('<g class="pin" tabindex="0" role="button" aria-label="' + esc(p.t) + '" data-k="' + k + '"><circle class="halo" cx="' + f1(c[0]) + '" cy="' + f1(c[1]) + '" r="' + (pr + 5) + '"/><circle class="dot" cx="' + f1(c[0]) + '" cy="' + f1(c[1]) + '" r="' + pr + '" style="stroke-width:' + (small ? 6 : 3) + '"/><text x="' + f1(c[0]) + '" y="' + f1(c[1] + 1) + '" style="font-size:' + fs + 'px">' + (k + 1) + '</text></g>');
   });
+  fig.dataset.small = small ? 1 : 0;
   s.push('</svg>');
   fig.innerHTML = s.join('');
   list.innerHTML = ANAT.map(function (p, k) { return '<button type="button" class="anat-chip" data-k="' + k + '" aria-pressed="false"><span class="n">' + (k + 1) + '</span>' + p.t + '</button>'; }).join('');
@@ -1551,6 +1541,7 @@ function buildAnatomy() {
     g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(+g.dataset.k); } });
   });
   $$('.anat-chip', list).forEach(function (c) { c.onclick = function () { open(+c.dataset.k); }; });
+  if (!buildAnatomy.bound) { buildAnatomy.bound = 1; var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { if (+fig.dataset.small !== (window.innerWidth < 760 ? 1 : 0)) buildAnatomy(); }, 200); }); }
 }
 function hotspotPopup(k, onMove) {
   var old = $('.modal.hs'); if (old) old.remove();
@@ -1566,7 +1557,7 @@ function hotspotPopup(k, onMove) {
       '<p class="hs-desc">' + p.s + '</p>' +
       '<div class="ac-prods">' + prods.map(function (pr) {
         return '<div class="ac-prod"><a class="im" href="' + plink(pr) + '" data-hx><img src="' + pimg(pr, 500) + '" alt="" loading="lazy"></a><b>' + esc(pr.t) + '</b>' + pills(pr) +
-          '<div class="ft"><a class="btn btn-line btn-sm" href="' + plink(pr) + '" data-hx>View</a><button type="button" class="btn btn-red btn-sm" data-add="' + pr.h + '">' + icon('plus') + 'Add</button></div></div>';
+          '<div class="ft"><a class="btn btn-line btn-sm" href="' + plink(pr) + '" data-hx>View</a><button type="button" class="btn btn-ink btn-sm" data-add="' + pr.h + '">' + icon('plus') + 'Add to quote</button></div></div>';
       }).join('') + '</div></div>';
     $$('[data-hx]', m).forEach(function (b) { b.addEventListener('click', close); });
     $$('[data-step]', m).forEach(function (b) { b.onclick = function () { show((k + +b.dataset.step + ANAT.length) % ANAT.length); }; });
@@ -1696,7 +1687,7 @@ function addModal(h, preset) {
   m.innerHTML = '<div class="scrim" data-mx></div><div class="mbox" role="dialog" aria-modal="true" aria-label="Add to quote"><div class="top"><img src="' + pimg(p, 200) + '" alt=""><div><span class="small">' + groupName(p) + '</span><h3>' + esc(p.t) + '</h3></div><button class="xbtn" type="button" data-mx aria-label="Close">' + icon('x') + '</button></div>' +
     (opts.length ? '<div class="f"><span class="lbl">Option</span><div class="chips" data-opts>' + opts.map(function (o, i) { var on = preset ? o.indexOf(preset) === 0 : i === 0; return '<button type="button" class="chip' + (on ? ' on' : '') + '">' + esc(o) + '</button>'; }).join('') + '</div></div>' : '') +
     '<div class="f"><label for="m-qty">Quantity <span class="opt">(optional, in screws or packs)</span></label><input class="inp num" id="m-qty" inputmode="numeric" placeholder="e.g. 1000"></div>' +
-    '<div class="btn-row"><button type="button" class="btn btn-red" data-ok>' + icon('plus') + 'Add to quote list</button><a class="btn btn-line" href="' + plink(p) + '" data-mx>View product</a></div></div>';
+    '<div class="btn-row"><button type="button" class="btn btn-ink" data-ok>' + icon('plus') + 'Add to quote</button><a class="btn btn-line" href="' + plink(p) + '" data-mx>View product</a></div></div>';
   document.body.appendChild(m);
   var close = function () { m.remove(); document.removeEventListener('keydown', onKey); };
   function onKey(e) { if (e.key === 'Escape') close(); }
@@ -1718,9 +1709,9 @@ function homeCats() {
   var box = $('#homeCats'); if (!box) return;
   box.innerHTML = GROUPS.map(function (g) {
     var n = inGroup(g.k).length, im = byH[g.img] || inGroup(g.k)[0];
-    return '<a class="cat" href="#products" data-cat="' + g.k + '"><span class="im"><img src="' + pimg(im, 500) + '" alt="" loading="lazy"></span><span class="tx"><b>' + g.n + '</b><span class="ct">' + n + '</span></span></a>';
+    return '<a class="cat" href="#products" data-cat="' + g.k + '"><span class="im"><img src="' + pimg(im, 500) + '" alt="" loading="lazy"></span><span class="tx"><b>' + g.n + '</b></span></a>';
   }).join('');
-  $('#homeCatsTotal').innerHTML = '<span>' + P.length + ' products across ' + GROUPS.length + ' categories.</span><a class="link" href="#products">See the full range</a>';
+  var hb = $('#homeCatsBtn'); if (hb) { hb.innerHTML = 'Browse all ' + P.length + ' products ' + icon('arrow'); hb.setAttribute('data-cat', 'all'); }
 }
 
 /* ================= PRODUCT DETAIL ================= */
@@ -1754,7 +1745,7 @@ function renderProduct(h) {
       '<div class="pd-buy">' +
         (p.opts.length ? '<div class="f"><span class="lbl">Choose an option</span><div class="chips" data-pd-opts>' + p.opts.map(function (o, j) { return '<button type="button" class="chip' + (j ? '' : ' on') + '">' + esc(o) + '</button>'; }).join('') + '</div></div>' : '') +
         '<div class="pd-row"><div class="f"><label for="pd-qty">Quantity</label><input class="inp num" id="pd-qty" inputmode="numeric" placeholder="e.g. 1000"></div></div>' +
-        '<div class="btn-row"><button type="button" class="btn btn-red" data-pd-add>' + icon('plus') + 'Add to quote list</button><button type="button" class="btn btn-ink" data-pd-quote>Get a price on this</button></div>' +
+        '<div class="btn-row"><button type="button" class="btn btn-red" data-pd-quote>Get a trade quote ' + icon('arrow') + '</button><button type="button" class="btn btn-line" data-pd-add>' + icon('plus') + 'Add to quote</button></div>' +
       '</div>' +
       '<table class="spec"><tbody>' + specRows(p).map(function (r) { return '<tr><th>' + r[0] + '</th><td>' + r[1] + '</td></tr>'; }).join('') + '</tbody></table>' +
       '<div class="prose small">' + classNote + '<p>Need help choosing? Call Durban <span class="num">031 705 5610</span>, Cape Town <span class="num">021 592 4577</span> or Gqeberha <span class="num">041 364 1294</span>.</p></div>' +
@@ -1829,7 +1820,7 @@ function renderCalc() {
     '<p class="small" style="color:var(--on-night-2)">' + why + '</p>' +
     (s.alts ? '<div style="display:grid;gap:8px"><span class="small" style="color:var(--on-night-2)">Kare\'s guide allows both lengths. Use the longer screw over insulation or a thicker sheet.</span><div class="altpick">' + s.alts.map(function (a, i) { return '<button type="button" class="' + (i === CS.alt ? 'on' : '') + '" data-alt="' + i + '">' + a.size + '</button>'; }).join('') + '</div></div>' : '') +
     '<div class="count">' + (q ? '<div><b class="num">' + fmt(q.n) + '</b> <span>screws</span></div><span>' + q.how + '</span>' : '<span>Add your roof size to count the screws.</span>') + '</div>' +
-    '<div class="res-btns"><button type="button" class="btn btn-red" data-calc-quote>Get a quote for these</button><button type="button" class="btn btn-line light btn-sm" data-calc-add>' + icon('plus') + 'Add to list</button><a class="btn btn-line light btn-sm" href="' + plink(p) + '">View product</a></div>' +
+    '<div class="res-btns"><button type="button" class="btn btn-red" data-calc-quote>Get a trade quote ' + icon('arrow') + '</button><button type="button" class="btn btn-line light btn-sm" data-calc-add>' + icon('plus') + 'Add to quote</button><a class="btn btn-line light btn-sm" href="' + plink(p) + '">View product</a></div>' +
     '<div class="also"><span class="small" style="color:var(--on-night-2)">You\'ll probably also need</span>' + extras.map(function (x) { var e = byH[x[0]]; return e ? '<a href="' + plink(e) + '"><img src="' + pimg(e, 120) + '" alt="" loading="lazy"><span>' + x[1] + '</span></a>' : ''; }).join('') + '</div>';
   calcAct = addIt;
   function addIt(goQuote) {
